@@ -23,8 +23,7 @@ class Checker
     raise "bad words like '#{url}' are not allowed!" if !clean?(url)
     raise "url '#{url}' is badly formatted" if !valid?(url)
 
-    short_url = randomize(url)
-    #short_url = 
+    short_url = randomize
   end
 end
 
@@ -49,7 +48,22 @@ class UrlRandomizer
     next_in_chain(link)
   end
     
-  def randomize(url)
+  def randomize
+    repeat_random
+  end
+
+  private
+
+  def repeat_random
+    text = ''
+    begin
+      text = random_string
+    end while LongUrl.all.include?(text)
+
+    text
+  end
+
+  def random_string
     rand(36**8).to_s(36)
   end
 end

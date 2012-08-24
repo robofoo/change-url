@@ -41,8 +41,9 @@ end
 
 describe UrlRandomizer do
   it 'does not create dupes' do
-    #ur = UrlRandomizer.new
-    #ur.randomize
-    
+    LongUrl.stub(:all) { ['aaa'] }
+    ur = UrlRandomizer.new
+    url = ur.randomize
+    LongUrl.all.include?(url).should == false
   end
 end
