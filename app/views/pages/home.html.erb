@@ -1,3 +1,6 @@
+Welcome, please enter a url to shorten
 
-<% myname = 'daniel' %>
-Hello <%= myname %>
+<%= form_tag("/url", :method => :post) do %>
+  <%= text_field_tag(:url) %>
+  <%= submit_tag("Shorten") %>
+<% end %>

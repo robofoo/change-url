@@ -1,6 +1,7 @@
 Bitly::Application.routes.draw do
 
   root :to => 'pages#home'
+  match 'url' => 'urls#shorten', :via => :post, :as => :url
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
