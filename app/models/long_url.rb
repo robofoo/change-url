@@ -13,7 +13,13 @@ class LongUrl < ActiveRecord::Base
   def self.shorten(url)
     new_url = ''
     begin
-      checker = Checker.new(UrlChecker.new(UrlRandomizer.new(BadWordFilter.new)))
+      checker = Checker.new(
+                  UrlChecker.new(
+                    UrlRandomizer.new(
+                      BadWordFilter.new
+                    )
+                  )
+                )
       new_url = checker.verify_url(url)
     rescue => exception
       raise exception
