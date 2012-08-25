@@ -4,6 +4,7 @@ class LongUrl < ActiveRecord::Base
   has_many :short_urls
   attr_accessible :url
   validates :url, :presence => true
+  validates_uniqueness_of :url
 
   # verify valid url to shorten
   # generate random short url
