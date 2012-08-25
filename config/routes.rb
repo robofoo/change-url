@@ -1,6 +1,7 @@
 Bitly::Application.routes.draw do
 
   root :to => 'pages#home'
+  match ':url' => 'pages#expand', :as => :expand
   match 'shorten' => 'pages#shorten', :via => :post, :as => :shorten
 
   # The priority is based upon order of creation:

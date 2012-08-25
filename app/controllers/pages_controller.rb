@@ -13,4 +13,16 @@ class PagesController < ApplicationController
       render :action => 'home'
     end
   end
+
+  def expand
+    url = params[:url]
+    surl = ShortUrl.find_by_url(url)
+
+    if surl
+      @long_url = surl.long_url.url
+    else
+      @long_url = 'n/a'
+      flash[:error] = "Sorry, no matching long url found for '#{url}'"
+    end
+  end
 end
