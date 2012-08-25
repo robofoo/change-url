@@ -16,21 +16,24 @@ describe LongUrl do
     end
 
     it 'errors for invalid urls' do
-      badurl = 'thisisnonsense'
-      newurl = LongUrl.shorten(badurl)
-      newurl.match(/badly formatted/).should be
+      expect do
+        badurl = 'thisisnonsense'
+        newurl = LongUrl.shorten(badurl)
+      end.to raise_exception(/badly formatted/)
     end
 
     it 'does not allow bad words (foo)' do
-      badword = 'foo'
-      newurl = LongUrl.shorten(badword)
-      newurl.match(/bad words/).should be
+      expect do
+        badword = 'foo'
+        newurl = LongUrl.shorten(badword)
+      end.to raise_error(/bad words/)
     end
 
     it 'does not allow bad words (bar)' do
-      badword = 'bar'
-      newurl = LongUrl.shorten(badword)
-      newurl.match(/bad words/).should be
+      expect do
+        badword = 'bar'
+        newurl = LongUrl.shorten(badword)
+      end.to raise_error(/bad words/)
     end
 
     it 'short urls differ by at least 2 chars' do

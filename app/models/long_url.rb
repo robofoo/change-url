@@ -16,7 +16,7 @@ class LongUrl < ActiveRecord::Base
       checker = Checker.new(UrlChecker.new(UrlRandomizer.new(BadWordFilter.new)))
       new_url = checker.verify_url(url)
     rescue => exception
-      new_url = exception.message
+      raise exception
     end
 
     new_url
