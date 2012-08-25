@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
   def home
     if params.has_key?(:url)
-      @long_url = params[:long_url]
+      @long_url = params[:url]
 
       begin
         @short_url = LongUrl.shorten(@long_url)
