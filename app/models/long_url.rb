@@ -4,7 +4,8 @@ class LongUrl < ActiveRecord::Base
   has_many :short_urls
   attr_accessible :url
   validates :url, :presence => true
-  validates_uniqueness_of :url
+  msg = "'%{value}' is already shortened. Ran out of time for a custom validator to get you that info. Sorry!"
+  validates_uniqueness_of :url, :message => msg 
 
   # verify valid url to shorten
   # generate random short url
