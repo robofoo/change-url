@@ -5,7 +5,7 @@ class PagesController < ApplicationController
 
       begin
         @short_url = LongUrl.shorten(@long_url)
-        flash.now[:status] = 'other notice'
+        flash.now[:status] = 'success message here'
       rescue => exception
         flash.now[:error] = exception.message
       end
