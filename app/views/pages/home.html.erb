@@ -17,6 +17,6 @@
   </p>
 
   <p>
-    Short url: <%= @short_url %>
+    Short url: <%= link_to @short_url, "#{root_url}/#{@short_url}" %>
   </p>
 <% end %>
