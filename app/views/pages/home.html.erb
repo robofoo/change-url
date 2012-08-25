@@ -1,6 +1,22 @@
-Welcome, please enter a url to shorten
+<p>
+  Welcome, please enter a url to shorten
+</p>
 
-<%= form_tag("/url", :method => :post) do %>
-  <%= text_field_tag(:url) %>
-  <%= submit_tag("Shorten") %>
+<p>
+  <%= form_tag(:method => :post) do %>
+    <%= text_field_tag(:url) %>
+    <%= submit_tag("Shorten") %>
+  <% end %>
+</p>
+
+
+<% if true #@short_url %>
+  <hr />
+  <p>
+    Long url: <%= @long_url %>
+  </p>
+
+  <p>
+    Short url: <%= @short_url %>
+  </p>
 <% end %>
