@@ -20,8 +20,12 @@ class Checker
   end
 
   def verify_url(url)
-    raise "bad words like '#{url}' are not allowed!" if !clean?(url)
-    raise "url '#{url}' is badly formatted" if !valid?(url)
+    begin
+      clean?(url)
+      valid?(url)
+    rescue => exception
+      raise exception
+    end
 
     short_url = randomize
   end
@@ -37,7 +41,10 @@ class UrlChecker
   def valid?(url)
     # todo: add real check for valid URI
     # for now just need at least one dot
-    url.count('.') >= 1
+    # and not empty
+    if url.empty? || url.count('.') < 1
+      raise "url '#{url}' is badly formatted"
+    end
   end
 end
 
@@ -77,6 +84,8 @@ class BadWordFilter
     
   def clean?(url)
     # todo: add real bad word filter
-    !%w[foo bar baz].include?(url)
+    if %w[foo bar baz].include?(url)
+      raise "bad words like '#{url}' are not allowed!"
+    end
   end
 end
